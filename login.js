@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const loginError = document.getElementById('loginError');
-    const SERVER_URL = 'http://101.53.149.101:3000'; // Your server URL
+    const SERVER_URL = 'https://101.53.149.101:3003'; // Your server URL
 
     // For testing, pre-fill with the credentials of Dr. Anju Bajoria
     // In doctor_master, assuming mobile is '7763869555' and password is 'password123'
