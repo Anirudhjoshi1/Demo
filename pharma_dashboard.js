@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const SERVER_URL = 'http://101.53.149.101:3000';
+    const SERVER_URL = 'https://101.53.149.101:3003';
     let startDate = moment().subtract(29, 'days').format('YYYY-MM-DD');
     let endDate = moment().format('YYYY-MM-DD');
 

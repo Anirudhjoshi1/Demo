@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const signupForm = document.getElementById('signupForm');
     const formMessage = document.getElementById('formMessage');
-    const SERVER_URL = 'http://101.53.149.101:3000'; // Your server URL
+    const SERVER_URL = 'https://101.53.149.101:3003'; // Your server URL
 
     signupForm.addEventListener('submit', async (e) => {
         e.preventDefault();

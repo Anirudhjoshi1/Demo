@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const doctorInfo = JSON.parse(sessionStorage.getItem('doctorInfo'));
-    const SERVER_URL = 'http://101.53.149.101:3000';
+    const SERVER_URL = 'https://101.53.149.101:3003';
 
     // Modal elements
     const modal = document.getElementById('prescriptionModal');

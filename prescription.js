@@ -8,7 +8,7 @@ class MedScriptApp {
         
         // --- Constants ---
         this.API_KEY = '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';
-        this.SERVER_URL = 'http://101.53.149.101:3000';
+        this.SERVER_URL = 'https://101.53.149.101:3003';
 
         // --- Initialization ---
         this.init();
