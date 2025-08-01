@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - MedScript Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="app-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+            <div>
+                <h1>Welcome, <span id="doctorName"></span></h1>
+                <p class="app-subtitle" style="margin: 0;">Your professional dashboard</p>
+            </div>
+            <button id="logoutBtn" class="btn btn--secondary">Logout</button>
+        </header>
+
+        <main class="app-main">
+            <!-- Dashboard Stats -->
+            <section class="form-grid" style="gap: 24px;">
+                <div class="card text-center">
+                    <div class="card__body">
+                        <h2 id="patientsToday">0</h2>
+                        <p class="text-muted">Patients Today</p>
+                    </div>
+                </div>
+                <div class="card text-center">
+                    <div class="card__body">
+                        <h2 id="patientsThisMonth">0</h2>
+                        <p class="text-muted">Patients This Month</p>
+                    </div>
+                </div>
+                <div class="card text-center">
+                    <div class="card__body">
+                        <h2 id="totalPrescriptions">0</h2>
+                        <p class="text-muted">Total Prescriptions</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <section class="text-center" style="margin: 32px 0;">
+                <a href="prescription.html" class="btn btn--primary btn--lg">
+                    <span class="btn-icon">✍️</span>
+                    Create New Prescription
+                </a>
+            </section>
+
+            <!-- 🚀 NEW PATIENT SEARCH SECTION -->
+            <section class="card">
+                <div class="card__header">
+                    <h2>Find Patient History</h2>
+                </div>
+                <div class="card__body">
+                    <div class="form-group" style="display: flex; gap: 10px; align-items: flex-end;">
+                        <div style="flex-grow: 1;">
+                            <label for="patientSearchPhone" class="form-label">Search by Patient Phone Number</label>
+                            <input type="tel" id="patientSearchPhone" class="form-control" placeholder="Enter patient's mobile number...">
+                        </div>
+                        <button id="patientSearchBtn" class="btn btn--secondary">Search</button>
+                    </div>
+                    <div id="patientSearchResults" style="margin-top: 20px;">
+                        <!-- Search results will be displayed here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Insights -->
+            <section class="card">
+                <div class="card__header">
+                    <h2>Practice Insights</h2>
+                </div>
+                <div class="card__body">
+                    <div class="form-grid" style="gap: 24px;">
+                        <div class="card" style="grid-column: 1 / -1;">
+                             <div class="card__header"><h3>Top Prescribed Medicines</h3></div>
+                             <div class="card__body">
+                                <canvas id="topMedicinesChart"></canvas>
+                             </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__header"><h3>Patient Gender Distribution</h3></div>
+                            <div class="card__body" style="display: flex; justify-content: center; align-items: center; height: 300px;">
+                                <canvas id="genderPieChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__header"><h3>Patient Age Groups</h3></div>
+                            <div class="card__body">
+                                <canvas id="ageBarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Prescriptions -->
+            <section class="card">
+                <div class="card__header">
+                    <h2>Recent Prescriptions</h2>
+                </div>
+                <div class="card__body">
+                    <table class="table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding: 8px; border-bottom: 1px solid var(--color-border);">Patient Name</th>
+                                <th style="text-align: left; padding: 8px; border-bottom: 1px solid var(--color-border);">Date</th>
+                                <th style="text-align: right; padding: 8px; border-bottom: 1px solid var(--color-border);">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentPrescriptionsTable">
+                            <!-- Rows will be injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for viewing prescriptions -->
+    <div id="prescriptionModal" class="loading-overlay hidden" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="card" style="max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+            <div class="card__header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Prescription Details</h2>
+                <button id="closeModalBtn" class="btn btn--secondary">×</button>
+            </div>
+            <div class="card__body">
+                <pre id="modalPrescriptionText" style="white-space: pre-wrap; word-wrap: break-word; background: var(--color-background); border: none; padding: 0;"></pre>
+                <!-- 🚀 NEW PDF DOWNLOAD BUTTON IN MODAL -->
+                <button id="downloadPdfBtn" class="btn btn--primary" style="margin-top: 20px;">Download PDF</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
+
+
+

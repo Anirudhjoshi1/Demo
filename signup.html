@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Signup - MedScript Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="max-width: 600px; margin-top: 50px;">
+        <header class="app-header">
+            <h1>MedScript Pro</h1>
+            <p class="app-subtitle">New Doctor Registration</p>
+        </header>
+
+        <main class="app-main">
+            <section class="card">
+                <div class="card__header">
+                    <h2>Create Your Account</h2>
+                </div>
+                <div class="card__body">
+                    <form id="signupForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="e.g., Dr. John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobile_number" class="form-label">Mobile Number (This will be your User ID)</label>
+                                <input type="tel" id="mobile_number" class="form-control" placeholder="e.g., 9876543210" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" class="form-control" placeholder="e.g., john.doe@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="specialty" class="form-label">Specialty</label>
+                                <input type="text" id="specialty" class="form-control" placeholder="e.g., Cardiology" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="registration_number" class="form-label">Medical Registration Number</label>
+                                <input type="text" id="registration_number" class="form-control" placeholder="e.g., 12345" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" id="city" class="form-control" placeholder="e.g., Mumbai" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password" class="form-label">Confirm Password</label>
+                                <input type="password" id="confirm_password" class="form-control" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width" style="margin-top: 20px;">Register</button>
+                    </form>
+                    <div id="formMessage" class="text-center" style="margin-top: 15px;"></div>
+                    <div class="text-center" style="margin-top: 20px;">
+                        <a href="login.html">Already have an account? Login here</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="signup.js"></script>
+</body>
+</html>

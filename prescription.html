@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Prescription - MedScript Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+<header class="app-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+    <div>
+        <h1>MedScript Pro</h1>
+        <p class="app-subtitle" style="margin: 0;">AI-Powered Prescription Assistant</p>
+    </div>
+    <!-- 🚀 ADD THIS BUTTON -->
+    <a href="dashboard.html" id="dashboardBtn" class="btn btn--secondary">Back to Dashboard</a>
+</header>
+
+        <main class="app-main">
+             <section class="card doctor-info-section">
+                <div class="card__header">
+                    <h2>Doctor Information</h2>
+                </div>
+                <div class="card__body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="doctorName" class="form-label">Doctor Name</label>
+                            <input type="text" id="doctorName" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="doctorReg" class="form-label">Registration Number</label>
+                            <input type="text" id="doctorReg" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="doctorSpecialty" class="form-label">Specialty</label>
+                            <input type="text" id="doctorSpecialty" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card patient-info-section">
+                <div class="card__header">
+                    <h2>Patient Information</h2>
+                </div>
+                <div class="card__body">
+                     <div class="form-group" style="display: flex; gap: 10px; align-items: flex-end;">
+                        <div style="flex-grow: 1;">
+                            <label for="patientMobile" class="form-label">Patient Mobile (WhatsApp)</label>
+                            <input type="tel" id="patientMobile" class="form-control" placeholder="Search by mobile number...">
+                        </div>
+                        <button id="searchPatientBtn" class="btn btn--secondary">Search</button>
+                    </div>
+                    <div id="patientSearchStatus" class="text-sm" style="margin-bottom: 16px;"></div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="patientName" class="form-label">Patient Name</label>
+                            <input type="text" id="patientName" class="form-control" placeholder="Jane Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="patientAge" class="form-label">Age</label>
+                            <input type="number" id="patientAge" class="form-control" placeholder="35">
+                        </div>
+                        <div class="form-group">
+                            <label for="patientGender" class="form-label">Gender</label>
+                            <select id="patientGender" class="form-control">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientPincode" class="form-label">Pincode</label>
+                            <input type="text" id="patientPincode" class="form-control" placeholder="e.g., 700001">
+                        </div>
+                        <div class="form-group">
+                            <label for="consultationDate" class="form-label">Date</label>
+                            <input type="date" id="consultationDate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card voice-recording-section">
+                 <div class="card__header">
+                    <h2>Voice Dictation</h2>
+                    <div class="recording-status">
+                        <span class="status-indicator" id="recordingStatus">Ready</span>
+                    </div>
+                </div>
+                <div class="card__body">
+                    <div class="recording-controls">
+                        <button id="startRecording" class="btn btn--primary btn--lg">
+                            <span class="btn-icon">🎤</span> Start Recording
+                        </button>
+                        <button id="stopRecording" class="btn btn--secondary btn--lg" disabled>
+                            <span class="btn-icon">⏹️</span> Stop Recording
+                        </button>
+                    </div>
+                    <div class="transcript-section">
+                        <label for="transcriptText" class="form-label">Transcribed Text</label>
+                        <textarea id="transcriptText" class="form-control transcript-textarea" placeholder="Your voice will be transcribed here..." rows="6"></textarea>
+                    </div>
+                    <div class="ai-formatting-section">
+                         <button id="formatWithAI" class="btn btn--primary">
+                            <span class="btn-icon">✨</span> Format with AI
+                        </button>
+                         <button id="clearTranscript" class="btn btn--outline">
+                            <span class="btn-icon">🗑️</span> Clear
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card prescription-template-section">
+                <div class="card__header"><h2>Prescription Details</h2></div>
+                <div class="card__body">
+                    <div class="prescription-form">
+                        <div class="form-group">
+                            <label for="chiefComplaint" class="form-label">Chief Complaint</label>
+                            <textarea id="chiefComplaint" class="form-control" rows="2" placeholder="Patient's main symptoms or concerns"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="clinicalFindings" class="form-label">Clinical Findings</label>
+                            <textarea id="clinicalFindings" class="form-control" rows="2" placeholder="Vital signs, physical examination findings"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="diagnosis" class="form-label">Diagnosis</label>
+                            <textarea id="diagnosis" class="form-control" rows="2" placeholder="Primary and secondary diagnoses"></textarea>
+                        </div>
+                        <div class="medications-section">
+                            <h3>Medications</h3>
+                            <div id="medicationsList" class="medications-list"></div>
+                            <button id="addMedication" class="btn btn--secondary">
+                                <span class="btn-icon">+</span> Add Medication
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="investigations" class="form-label">Investigations/Tests</label>
+                            <textarea id="investigations" class="form-control" rows="2" placeholder="Laboratory tests, imaging, etc."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="advice" class="form-label">Advice/Instructions</label>
+                            <textarea id="advice" class="form-control" rows="3" placeholder="General advice, lifestyle modifications, precautions"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="followUp" class="form-label">Follow-up Date</label>
+                            <input type="date" id="followUp" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card export-section">
+                <div class="card__header"><h2>Save & Share</h2></div>
+                <div class="card__body">
+                     <div class="export-options">
+                        <div class="export-row">
+                             <button id="saveAndDownloadPDF" class="btn btn--primary">
+                                <span class="btn-icon">💾</span> Save & Download PDF
+                            </button>
+                             <button id="downloadExcel" class="btn btn--primary">
+                                <span class="btn-icon">📊</span> Download Excel
+                            </button>
+                        </div>
+                        <div class="export-row">
+                            <div class="email-section">
+                                <input type="email" id="patientEmail" class="form-control" placeholder="Patient's email address">
+                                <button id="sendEmail" class="btn btn--secondary">
+                                    <span class="btn-icon">✉️</span> Send Email
+                                </button>
+                            </div>
+                        </div>
+                        <div class="export-row">
+                            <div class="whatsapp-section">
+                                <input type="tel" id="whatsappNumber" class="form-control" placeholder="WhatsApp number (with country code)">
+                                <button id="shareWhatsApp" class="btn btn--secondary">
+                                    <span class="btn-icon">📱</span> Share via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Processing...</p>
+            </div>
+        </div>
+        <div id="toastContainer" class="toast-container"></div>
+    </div>
+
+    <script src="prescription.js"></script>
+</body>
+</html>
